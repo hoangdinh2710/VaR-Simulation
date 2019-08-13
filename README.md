@@ -1,4 +1,4 @@
-# VaR-Simulation
+# VaR Simulations
 
 In the financial industry, Value-at-risk (VaR) is a new standard measurement of risk. VaR offers asset managers a better understanding of risk comparing to the simple standard deviation measurement. It tackles the weakness of standard deviations by considering only the downside risk rather than both tails of the distribution. Actual VaR calculation is straight-forward, it is the minimum loss that could occur if an unlikely event happens. However, to effectively manage risk, one should estimate the future VaR rather than using the historical VaR. The three common methods to estimate VaR are Non-Parametric, Parametric (Historical Simulation) and the Monte Carlo Simulation. This research paper introduces a new approach to measure VaR using the replicated portfolio. The replicated portfolio is built using parameters from the regression of the portfolio returns and the performance of 11 equity sectors. The estimated VaRs are then compared to the actual VaR. All four approaches usually yield smaller values than the actual VaR. The parametric and the Monte Carlo Simulation methods yield close estimations. The decomposition method fails to capture all the risks of the actual portfolio; hence, it also fails to deliver a fair estimation. While other methods are only sensitive to the parameters of the distribution (mean and standard deviations), the decomposition method can detect both changes in the shape of the distribution and the parameters.
 
@@ -6,7 +6,7 @@ There are 3 popular methods to estimate VaR: parametric (Historical Simulation),
 1.	Parametric VaR
 The earliest version is parametric VaR. One of the famous parametric VaR method is the RiskMetrics which was introduced by JP.Morgan Chase in 1994 (Longerstaey, 1996). Since then, RiskMetrics became the benchmark for measuring risk and providing clients with a way to effectively manage risks. RiskMetrics calculation is based on the Variance-Covariance method under the normality assumption (Investopedia).
 Let P_i be the initial value of the portfolio, μ be the mean of the series, σ be the standard deviation of the return series, and Z be the Z-score related to the confident level under the normality assumption. The Value at Risk of the portfolio’s value under the RiskMetrics framework is:
-VaR=P_i*α
+$VaR=P_i*α$
 
 Where α=normal.ppf(1-confidence) : the probability density function at (100%-confidence level) of standard normal distribution.
 This VaR method was applied widely in both academic fields and businesses. Alexander used Mean-VaR to replace the traditional Mean-Variance of Markowitz to construct the optimal portfolio (Alexander, 2002). The VaR can implement the weakness of variance (similar to standard deviation) as variance considers both sides of the stock movement, while VaR only considers the down-side risks. The variance does not consider the direction of the movement, hence, the optimized portfolio might prevent investors from both gains and losses. On other hand, optimize the portfolio using mean-VaR will only protect investors against the down-side risk (Alexander, 2002).
@@ -15,6 +15,7 @@ This VaR method was applied widely in both academic fields and businesses. Alexa
 
 Non-parametric VaR is the actual value at risk without the normality assumption. We can calculate VaR directly using left-tail measures (Guojunn Wu, 2002). Given a time-series of assets return: ${r_t }_(t=1)^n$ , VaR is the value such that:
 $Pr(r_t≤|VAR_t ||I_(t-1))=1-c$
+
 Where I_(t-1) : information available at time $t$ - 1, c: confident level
 
 3. Monte-Carlo Simulation
